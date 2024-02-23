@@ -1,5 +1,9 @@
 Generate custom propoganda posters using [Satori](https://github.com/vercel/satori)
 
+## Demo
+
+https://reposter.studio/api/generate-poster?text=LEARN&text=THE&text=ART&text=OF%20REPOSTER
+
 ## Running locally 
 
 ```bash
