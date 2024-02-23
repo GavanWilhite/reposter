@@ -3,6 +3,7 @@ import { PosterContainer, PosterTemplate } from './poster-container';
 import { WomanPointingPosterTemplate } from './posters/woman-pointing';
 import { ImageResponse } from '@vercel/og'
 import { FontOptions } from './utils/types';
+import { getHostPrefixedUrl } from './utils/host-prefix';
 
 export const runtime = 'edge';
 
@@ -22,8 +23,7 @@ export async function GET(req: NextRequest) {
         
         const fonts = await Promise.all(
             template.fonts?.map(async (font) => {
-                // const url = new URL(font.relativeUrl, import.meta.url);
-                const url =  'http://localhost:3000/fonts/Bebas-Regular.ttf'
+                const url = getHostPrefixedUrl(font.relativeUrl);
                 const data = await fetch(url).then((res) => res.arrayBuffer());
                 return {
                     name: font.name,

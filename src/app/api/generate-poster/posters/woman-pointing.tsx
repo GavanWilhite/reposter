@@ -41,7 +41,7 @@ export const WomanPointingPosterTemplate: PosterTemplate = {
   fonts: [
     {
       name: "Bebas-Regular",
-      relativeUrl: "../../../../assets/fonts/Bebas-Regular.ttf",
+      relativeUrl: "fonts/Bebas-Regular.ttf",
       style: "normal",
     },
   ],
