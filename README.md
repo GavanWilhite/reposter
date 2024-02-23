@@ -1,3 +1,5 @@
+A [Gray Area](https://grayarea.org/) Art Hack Day Project
+
 Generate custom propoganda posters using [Satori](https://github.com/vercel/satori)
 
 ## Demo
