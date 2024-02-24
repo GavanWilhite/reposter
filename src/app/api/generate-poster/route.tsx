@@ -8,7 +8,7 @@ import QRCode from 'qrcode'
 
 export const runtime = 'edge';
 
-export const posters:Map<string, PosterTemplate> = new Map([
+const posters:Map<string, PosterTemplate> = new Map([
     [ 'woman-pointing',  WomanPointingPosterTemplate],
 ]);
 
