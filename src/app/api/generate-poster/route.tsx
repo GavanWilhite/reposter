@@ -4,7 +4,7 @@ import { WomanPointingPosterTemplate } from './posters/woman-pointing';
 import { ImageResponse } from '@vercel/og'
 import { getHostPrefixedUrl } from './utils/host-prefix';
 import QRCode from 'qrcode'
-
+import { kv } from '@vercel/kv';
 
 export const runtime = 'edge';
 
@@ -56,7 +56,7 @@ export async function GET(req: NextRequest) {
             ),
             {
                 width: template.width,
-                height: template?.height, 
+                height: template.height, 
                 emoji: 'fluent',
                 fonts: [
                     ...fonts
