@@ -4,13 +4,15 @@ interface QRProps {
     data: any;
     lightColor?: string;
     darkColor?: string;
+    qrOnly?: boolean;
 }
 
 export default function RoundedQRCode(props: QRProps) {
-    let { data, lightColor: backgroundColor, darkColor: foregroundColor } = props;
+    let { data, lightColor, darkColor, qrOnly } = props;
 
-    foregroundColor = foregroundColor || '#000000';
-    backgroundColor = backgroundColor || '#ffffff';
+    console.log(qrOnly);
+    darkColor = darkColor || '#000000';
+    lightColor = lightColor || '#ffffff';
 
     return (
         <div style={{
@@ -18,15 +20,16 @@ export default function RoundedQRCode(props: QRProps) {
             flexDirection: 'column',
             alignItems: 'center',
             position: 'absolute',
-            bottom: '40px',
-            left: '40px',
+            bottom: qrOnly ? '0px' : '40px',
+            left: qrOnly ? '0px' : '40px',
             width: '320px',
             height: '320px',
-            borderColor: foregroundColor,
-            backgroundColor: backgroundColor,
+            borderColor: darkColor,
+            backgroundColor: lightColor,
             borderRadius: '3%',
             border: '5px solid',
-            color: foregroundColor,
+            color: darkColor,
+            fontFamily: 'Bebas-Regular',
         }}>
             <img
                 style={{

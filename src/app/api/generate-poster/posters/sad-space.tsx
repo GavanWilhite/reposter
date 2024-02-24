@@ -35,8 +35,8 @@ export const SadSpacePosterTemplate: PosterTemplate = {
   Component: SadSpacePoster,
   height: 3200,
   width: 2175,
-  lightColor: '#ffffff',
-  darkColor: '#2b2b22',
+  lightColor: '#e2ddd3',
+  darkColor: '#92390f',
   fonts: [
     {
       name: "Bebas-Regular",

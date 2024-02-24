@@ -37,7 +37,7 @@ export const OrcaPeacePosterTemplate: PosterTemplate = {
   height: 3200,
   width: 2175,
   lightColor: '#ffffff',
-  darkColor: '#2b2b22',
+  darkColor: '#016652',
   fonts: [
     {
       name: "Bebas-Regular",

@@ -37,8 +37,8 @@ export const LastVolcanoPosterTemplate: PosterTemplate = {
   Component: LastVolcanoPoster,
   height: 3200,
   width: 2175,
-  lightColor: '#ffffff',
-  darkColor: '#2b2b22',
+  lightColor: '#fafeee',
+  darkColor: '#ce0001',
   fonts: [
     {
       name: "NPS",

@@ -38,8 +38,8 @@ export const BareBrainsPosterTemplate: PosterTemplate = {
   Component: BareBrainsPoster,
   height: 3200,
   width: 2175,
-  lightColor: '#ffffff',
-  darkColor: '#2b2b22',
+  lightColor: '#ceeae0',
+  darkColor: '#009067',
   fonts: [
     {
       name: "Castle",

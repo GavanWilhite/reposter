@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import { PosterContainer, PosterTemplate } from './components/poster-container';
+import { PosterContainer, PosterTemplate, SatoriFont } from './components/poster-container';
 import { WomanPointingPosterTemplate } from './posters/woman-pointing';
 import { OrcaPeacePosterTemplate } from './posters/orca-peace';
 import { BareBrainsPosterTemplate } from './posters/bare-brains';
@@ -30,11 +30,19 @@ export async function GET(req: NextRequest) {
         const templateName = searchParams.get('template') || 'woman-pointing';
         const template = posters.get(templateName) || WomanPointingPosterTemplate;
         const includeQr = searchParams.has('qr') || searchParams.get('qr') === 'true';
+        const qrOnly = searchParams.get('poster') === 'false';
 
         const arrayOfText = searchParams.getAll('text') || ['Example', 'Text', 'Here'];
 
+        const qrFont:SatoriFont = 
+        {
+          name: "Bebas-Regular",
+          relativeUrl: "fonts/Bebas-Regular.ttf",
+          style: "normal",
+        };
+        const allFontsToLoad = template.fonts ? [...template.fonts, qrFont] : [qrFont];
         const fonts = await Promise.all(
-            template.fonts?.map(async (font) => {
+            allFontsToLoad.map(async (font) => {
                 const url = getHostPrefixedUrl(font.relativeUrl);
                 const data = await fetch(url).then((res) => res.arrayBuffer());
                 return {
@@ -59,14 +67,18 @@ export async function GET(req: NextRequest) {
 
         const qrData = includeQr ? `data:image/svg+xml,${qrSvg}` : undefined;
 
+        const width = qrOnly ? 320 : template.width;
+        const height = qrOnly ? 320 : template.height;
+
+
         return new ImageResponse(
             (
-                <PosterContainer template={template} textEntries={arrayOfText} qrData={qrData}
+                <PosterContainer template={template} textEntries={arrayOfText} qrData={qrData} qrOnly={qrOnly}
                 />
             ),
             {
-                width: template.width,
-                height: template.height, 
+                width: width,
+                height: height, 
                 emoji: 'fluent',
                 fonts: [
                     ...fonts

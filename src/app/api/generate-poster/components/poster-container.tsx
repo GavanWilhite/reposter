@@ -5,6 +5,7 @@ export interface PosterContainerProps {
     template: PosterTemplate;
     textEntries: string[];
     qrData?: string;
+    qrOnly?: boolean;
 }
 
 export interface PosterProps {
@@ -26,7 +27,7 @@ export type PosterTemplate = {
     darkColor?: string;
 };
 
-export const PosterContainer = ({ template, textEntries, qrData }: PosterContainerProps) => {
+export const PosterContainer = ({ template, textEntries, qrData, qrOnly }: PosterContainerProps) => {
     const { Component: PosterComponent } = template;
     return (
         <div style={{
@@ -34,8 +35,8 @@ export const PosterContainer = ({ template, textEntries, qrData }: PosterContain
             width: '100%',
             height: '100%',
         }}>
-            <PosterComponent textEntries={textEntries} />
-            {qrData && <RoundedQRCode data={qrData} darkColor={template.darkColor} lightColor={template.lightColor}></RoundedQRCode>}
+            {!qrOnly && <PosterComponent textEntries={textEntries} />}
+            {qrData && <RoundedQRCode data={qrData} darkColor={template.darkColor} lightColor={template.lightColor} qrOnly={qrOnly}></RoundedQRCode>}
         </div>
     )
 }

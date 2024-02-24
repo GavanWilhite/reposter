@@ -37,8 +37,8 @@ export const EraBrutalityPosterTemplate: PosterTemplate = {
   Component: EraBrutalityPoster,
   height: 3200,
   width: 2175,
-  lightColor: '#ffffff',
-  darkColor: '#2b2b22',
+  lightColor: '#dacdac',
+  darkColor: '#d12c15',
   fonts: [
     {
       name: "Castle",
