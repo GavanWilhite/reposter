@@ -1,9 +1,10 @@
 import { NextRequest } from 'next/server';
-import { PosterContainer, PosterTemplate } from './poster-container';
+import { PosterContainer, PosterTemplate } from './components/poster-container';
 import { WomanPointingPosterTemplate } from './posters/woman-pointing';
 import { ImageResponse } from '@vercel/og'
-import { FontOptions } from './utils/types';
 import { getHostPrefixedUrl } from './utils/host-prefix';
+import QRCode from 'qrcode'
+
 
 export const runtime = 'edge';
 
@@ -33,9 +34,20 @@ export async function GET(req: NextRequest) {
             }) || []
         );
 
+        const qrSvg = await QRCode.toString(req.url, {
+            margin: 2,
+            color: {
+                dark: template.darkColor || '#000',
+                light: template.lightColor || '#FFF'
+            },
+            type:'svg'
+        });
+
+        const qrData = `data:image/svg+xml,${qrSvg}`;
+
         return new ImageResponse(
             (
-                <PosterContainer template={template} textEntries={arrayOfText}
+                <PosterContainer template={template} textEntries={arrayOfText} qrData={qrData}
                 />
             ),
             {

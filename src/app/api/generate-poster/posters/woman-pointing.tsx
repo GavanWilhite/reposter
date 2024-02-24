@@ -1,6 +1,6 @@
-import { PosterBackground } from '../poster-background';
-import { PosterProps, PosterTemplate } from '../poster-container';
-import { PosterText } from '../poster-text';
+import { PosterBackground } from '../components/poster-background';
+import { PosterProps, PosterTemplate } from '../components/poster-container';
+import { PosterText } from '../components/poster-text';
 
 export const WomanPointingPoster: React.FC<PosterProps> = ({ textEntries }) => {
   const [text1, text2, text3, text4] = textEntries;
@@ -38,6 +38,8 @@ export const WomanPointingPosterTemplate: PosterTemplate = {
   Component: WomanPointingPoster,
   height: 3200,
   width: 2175,
+  lightColor: '#ffffff',
+  darkColor: '#2b2b22',
   fonts: [
     {
       name: "Bebas-Regular",
