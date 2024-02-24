@@ -2,6 +2,7 @@ import { NextRequest } from 'next/server';
 import { PosterContainer, PosterTemplate } from './components/poster-container';
 import { WomanPointingPosterTemplate } from './posters/woman-pointing';
 import { OrcaPeacePosterTemplate } from './posters/orca-peace';
+import { BareBrainsPosterTemplate } from './posters/bare-brains';
 import { ImageResponse } from '@vercel/og'
 import { getHostPrefixedUrl } from './utils/host-prefix';
 import QRCode from 'qrcode'
@@ -12,6 +13,7 @@ export const runtime = 'edge';
 const posters:Map<string, PosterTemplate> = new Map([
     [ 'woman-pointing',  WomanPointingPosterTemplate],
     [ 'orca-peace',  OrcaPeacePosterTemplate],
+    [ 'bare-brains',  BareBrainsPosterTemplate],
 ]);
 
 export async function GET(req: NextRequest) {
