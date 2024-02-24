@@ -1,6 +1,11 @@
 import { NextRequest } from 'next/server';
 import { PosterContainer, PosterTemplate } from './components/poster-container';
 import { WomanPointingPosterTemplate } from './posters/woman-pointing';
+import { OrcaPeacePosterTemplate } from './posters/orca-peace';
+import { BareBrainsPosterTemplate } from './posters/bare-brains';
+import { LastVolcanoPosterTemplate } from './posters/last-volcano';
+import { SadSpacePosterTemplate } from './posters/sad-space';
+import { EraBrutalityPosterTemplate } from './posters/era-brutality';
 import { ImageResponse } from '@vercel/og'
 import { getHostPrefixedUrl } from './utils/host-prefix';
 import QRCode from 'qrcode'
@@ -10,6 +15,11 @@ export const runtime = 'edge';
 
 const posters:Map<string, PosterTemplate> = new Map([
     [ 'woman-pointing',  WomanPointingPosterTemplate],
+    [ 'orca-peace',  OrcaPeacePosterTemplate],
+    [ 'bare-brains',  BareBrainsPosterTemplate],
+    [ 'last-volcano',  LastVolcanoPosterTemplate],
+    [ 'sad-space',  SadSpacePosterTemplate],
+    [ 'era-brutality',  EraBrutalityPosterTemplate],
 ]);
 
 export async function GET(req: NextRequest) {
@@ -22,7 +32,7 @@ export async function GET(req: NextRequest) {
         const includeQr = searchParams.has('qr') || searchParams.get('qr') === 'true';
 
         const arrayOfText = searchParams.getAll('text') || ['Example', 'Text', 'Here'];
-        
+
         const fonts = await Promise.all(
             template.fonts?.map(async (font) => {
                 const url = getHostPrefixedUrl(font.relativeUrl);
