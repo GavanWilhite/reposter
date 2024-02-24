@@ -25,9 +25,9 @@ export const LastVolcanoPoster: React.FC<PosterProps> = ({ textEntries }) => {
           left: 0,
         }}
       >
-        <PosterText text={text1} align="left" style={{ fontSize:"150px", fontFamily: 'Bebas-Regular', top:'100px', left:'100px', width:'100%', color:'#ffffff'}}/>
-        <PosterText text={text2} align="left" style={{ fontSize:"150px", fontFamily: 'Bebas-Regular', top:'250px', left:'100px', width:'100%', color:'#ffffff'}}/>
-        <PosterText text={text3} align="center" style={{ fontSize:"80px", fontFamily: 'Bebas-Regular', top:'2550px', width:'100%', color:'#ffffff'}}/>
+        <PosterText text={text1} align="left" style={{ fontSize:"80px", fontFamily: 'NPS', top:'100px', left:'100px', width:'100%', color:'#ffffff'}}/>
+        <PosterText text={text2} align="left" style={{ fontSize:"80px", fontFamily: 'NPS', top:'250px', left:'100px', width:'100%', color:'#ffffff'}}/>
+        <PosterText text={text3} align="center" style={{ fontSize:"40px", fontFamily: 'NPS', top:'2550px', width:'100%', color:'#ffffff'}}/>
       </div>
     </div>
   );
@@ -41,8 +41,8 @@ export const LastVolcanoPosterTemplate: PosterTemplate = {
   darkColor: '#2b2b22',
   fonts: [
     {
-      name: "Bebas-Regular",
-      relativeUrl: "fonts/Bebas-Regular.ttf",
+      name: "NPS",
+      relativeUrl: "fonts/NPS_1935.ttf",
       style: "normal",
     },
   ],
