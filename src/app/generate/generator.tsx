@@ -10,6 +10,11 @@ interface GeneratorProps {
 export const Generator = (props:GeneratorProps) => {
   const templateOptions = {
     "Woman Pointing": "woman-pointing",
+    "Bare Brains": "bare-brains",
+    "Last Volcano": "last-volcano",
+    "Sad Space": "sad-space",
+    "Orca Peace": "orca-peace",
+    "Era Brutality": "era-brutality",
   };
 
   const defaultTexts = ["Text 1", "Text 2", "Text 3", "Text 4"];
