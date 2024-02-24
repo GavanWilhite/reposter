@@ -54,7 +54,7 @@ export const BareBrainsPosterTemplate: PosterTemplate = {
     {
       name: "FPN-Bold",
       relativeUrl: "fonts/fpn1_1.otf",
-      style: "bold",
+      style: "normal",
     },
   ],
 };

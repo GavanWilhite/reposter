@@ -53,7 +53,7 @@ export const EraBrutalityPosterTemplate: PosterTemplate = {
     {
       name: "FPN-Bold",
       relativeUrl: "fonts/fpn1_1.otf",
-      style: "bold",
+      style: "normal",
     },
   ],
 };
