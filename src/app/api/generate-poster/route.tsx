@@ -11,7 +11,7 @@ import { getHostPrefixedUrl } from './utils/host-prefix';
 import QRCode from 'qrcode'
 import { kv } from '@vercel/kv';
 
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 const posters:Map<string, PosterTemplate> = new Map([
     [ 'woman-pointing',  WomanPointingPosterTemplate],
