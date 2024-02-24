@@ -35,7 +35,7 @@ export const PosterContainer = ({ template, textEntries, qrData }: PosterContain
             height: '100%',
         }}>
             <PosterComponent textEntries={textEntries} />
-            <RoundedQRCode data={qrData} darkColor={template.darkColor} lightColor={template.lightColor}></RoundedQRCode>
+            {qrData && <RoundedQRCode data={qrData} darkColor={template.darkColor} lightColor={template.lightColor}></RoundedQRCode>}
         </div>
     )
 }

@@ -8,7 +8,7 @@ import QRCode from 'qrcode'
 
 export const runtime = 'edge';
 
-const posters:Map<string, PosterTemplate> = new Map([
+export const posters:Map<string, PosterTemplate> = new Map([
     [ 'woman-pointing',  WomanPointingPosterTemplate],
 ]);
 
@@ -19,6 +19,7 @@ export async function GET(req: NextRequest) {
 
         const templateName = searchParams.get('template') || 'woman-pointing';
         const template = posters.get(templateName) || WomanPointingPosterTemplate;
+        const includeQr = searchParams.has('qr') || searchParams.get('qr') === 'true';
 
         const arrayOfText = searchParams.getAll('text') || ['Example', 'Text', 'Here'];
         
@@ -34,7 +35,10 @@ export async function GET(req: NextRequest) {
             }) || []
         );
 
-        const qrSvg = await QRCode.toString(req.url, {
+        const generateQuery = new URLSearchParams(searchParams);
+        const generateUrl = getHostPrefixedUrl(`/generate?${generateQuery}`);
+
+        const qrSvg = await QRCode.toString(generateUrl, {
             margin: 2,
             color: {
                 dark: template.darkColor || '#000',
@@ -43,7 +47,7 @@ export async function GET(req: NextRequest) {
             type:'svg'
         });
 
-        const qrData = `data:image/svg+xml,${qrSvg}`;
+        const qrData = includeQr ? `data:image/svg+xml,${qrSvg}` : undefined;
 
         return new ImageResponse(
             (
