@@ -36,6 +36,7 @@ const Page = () => {
   query.append("text", text2);
   query.append("text", text3);
   query.append("text", text4);
+  query.append("regenerateCounter", regenerateCounter.toString());
   if(includeQr) query.append("qr", 'true');
   const imageUrl = `/api/generate-poster?${query}`;
 
