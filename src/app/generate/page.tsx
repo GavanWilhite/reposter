@@ -10,7 +10,6 @@ const templateOptions = {
 const defaultTexts = ["Text 1", "Text 2", "Text 3", "Text 4"];
 
 const Page = () => {
-  //const [imageUrl, setImageUrl] = useState<string | null>(null);
   const searchParams = useSearchParams();
   const [template, setTemplate] = useState<string>(
     searchParams.get("template") || templateOptions["Woman Pointing"]
@@ -28,6 +27,7 @@ const Page = () => {
     searchParams.getAll("text")[3] || defaultTexts[3]
   );
   const [includeQr, setIncludeQr] = useState<boolean>(true);
+  const [regenerateCounter, setRegenerateCounter] = useState<number>(0);
 
   const query = new URLSearchParams({
     template: template,
@@ -38,22 +38,6 @@ const Page = () => {
   query.append("text", text4);
   if(includeQr) query.append("qr", 'true');
   const imageUrl = `/api/generate-poster?${query}`;
-
-  // const generate = async (template: string, text1: string, text2: string, text3: string, text4: string) => {
-  //   setImageUrl(null);
-  //   const query = new URLSearchParams({
-  //     template: template,
-  //   });
-  //   query.append('text', text1);
-  //   query.append('text', text2);
-  //   query.append('text', text3);
-  //   query.append('text', text4);
-  //   setImageUrl(`/api/generate-poster?${query}`);
-  // }
-
-  // useEffect(() => {
-  //   generate(templateOptions['Woman Pointing'], defaultTexts[0], defaultTexts[1], defaultTexts[2], defaultTexts[3]);
-  // }, []);
 
   const values = useControls(
     {
@@ -76,6 +60,7 @@ const Page = () => {
         setText3(get("text3"));
         setText4(get("text4"));
         setIncludeQr(get("includeQr"));
+        setRegenerateCounter((c) => c + 1);
       }),
       download: button(async () => {
         if (imageUrl) {
