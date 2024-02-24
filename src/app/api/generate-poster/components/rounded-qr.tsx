@@ -46,7 +46,7 @@ export default function RoundedQRCode(props: QRProps) {
                 top: '-3px',
                 margin: '0',
                 padding: '0',
-            }}>CHANGE</div>
+            }}>MAKE</div>
             <div className="text-center text-xs font-bold" style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -56,7 +56,7 @@ export default function RoundedQRCode(props: QRProps) {
                 bottom: '5px',
                 margin: '0',
                 padding: '0',
-            }}>THIS POSTER</div>
+            }}>YOUR POSTER</div>
         </div>
     );
 }
