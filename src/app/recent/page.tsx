@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { kv } from "@vercel/kv";
 import { PosterList } from "./poster-list";
+import { PosterCycler } from './poster-cycler';
 
 const RECENT_COUNT = 5;
 
@@ -13,7 +14,7 @@ const Page = () => {
   return (
     <div>
       <h1>Recent</h1>
-      <PosterList getRecentPosters={getRecentPosters} />
+      <PosterCycler getRecentPosters={getRecentPosters} />
     </div>
   );
 };
