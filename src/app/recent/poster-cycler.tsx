@@ -1,12 +1,13 @@
 "use client";
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
-
-const INTERVAL = 5;
 
 interface PosterCyclerProps {
   getRecentPosters: () => Promise<string[]>;
 }
+
+const CYCLE_INTERVAL = 10000;
+const FETCH_INTERVAL = 10000;
 
 export const PosterCycler = (props: PosterCyclerProps) => {
   const [posters, setPosters] = useState<string[]>([]);
@@ -14,12 +15,11 @@ export const PosterCycler = (props: PosterCyclerProps) => {
 
   const params = useSearchParams();
 
-  const paramInterval = params.has("interval")
-    ? parseInt(params.get("interval")!)
-    : undefined;
-  const interval = paramInterval || INTERVAL;
-
   useEffect(() => {
+    const paramFetchInterval = params.has("fetch")
+        ? parseInt(params.get("fetch")!)
+        : undefined;
+    const fetchIntervalTime = paramFetchInterval || FETCH_INTERVAL;
     const fetchPosters = async () => {
       const newPosters = await props.getRecentPosters();
       // Update posters only if they have changed
@@ -29,14 +29,19 @@ export const PosterCycler = (props: PosterCyclerProps) => {
     };
 
     fetchPosters(); // Initial fetch
-    const fetchInterval = setInterval(fetchPosters, interval * 1000);
+    const fetchInterval = setInterval(fetchPosters, fetchIntervalTime*1000);
     return () => clearInterval(fetchInterval);
-  }, [posters, interval]);
+  }, [posters]);
 
   useEffect(() => {
+    const paramCycleInterval = params.has("cycle")
+      ? parseInt(params.get("cycle")!)
+      : undefined;
+    const cycleIntervalTime = paramCycleInterval || CYCLE_INTERVAL;
+
     const cycleInterval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % posters.length);
-    }, 3000); // Adjust cycling speed as necessary
+    }, cycleIntervalTime * 1000); // Adjust cycling speed as necessary
 
     return () => clearInterval(cycleInterval);
   }, [posters.length]); // Dependency on posters.length to adjust to new poster sets
