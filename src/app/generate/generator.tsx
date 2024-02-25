@@ -1,13 +1,13 @@
-'use client';
-import { useControls, button } from 'leva';
-import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+"use client";
+import { useControls, button } from "leva";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface GeneratorProps {
   record: (posterProps: string) => void;
-};
+}
 
-export const Generator = (props:GeneratorProps) => {
+export const Generator = (props: GeneratorProps) => {
   const templateOptions = {
     "Woman Pointing": "woman-pointing",
     "Bare Brains": "bare-brains",
@@ -45,7 +45,7 @@ export const Generator = (props:GeneratorProps) => {
   query.append("text", text3);
   query.append("text", text4);
   query.append("regenerate", regenerateCounter.toString());
-  if(includeQr) query.append("qr", 'true');
+  if (includeQr) query.append("qr", "true");
   const imageUrl = `/api/generate-poster?${query}`;
 
   useEffect(() => {
@@ -91,18 +91,52 @@ export const Generator = (props:GeneratorProps) => {
     [imageUrl, template, text1, text2, text3, text4, includeQr, query]
   );
   return (
-  <div
-    style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      height: "100vh",
-      width: "100vw",
-      backgroundImage: `url(${imageUrl})`,
-      backgroundSize: "contain",
-      overflow: "visible",
-      backgroundRepeat: "repeat",
-    }}
-  ></div>);
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+        width: "100vw",
+        overflow: "visible",
+        backgroundRepeat: "repeat",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          position: "absolute",
+          top: "0",
+          left: "0",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100vh",
+          width: "100vw",
+          overflow: "visible",
+          backgroundRepeat: "repeat",
+          fontSize: "50px",
+          textAlign: "center",
+        }}
+      >Loading! <br/> May take ~20 seconds</div>
+      <div
+        style={{
+          display: "flex",
+          position: "absolute",
+          top: "0",
+          left: "0",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100vh",
+          width: "100vw",
+          backgroundImage: `url(${imageUrl})`,
+          backgroundSize: "contain",
+          overflow: "visible",
+          backgroundRepeat: "repeat",
+        }}
+      ></div>
+    </div>
+  );
 };
