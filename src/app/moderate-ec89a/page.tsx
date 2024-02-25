@@ -22,13 +22,17 @@ const Page = () => {
     "use server";
     await kv.lrem("approved-posters", 0, poster);
   }
+  async function superRejectPoster(poster: string) {
+    "use server";    
+    await kv.lrem("generated-posters", 0, poster);
+  }
 
   return (
     <div>
       <h1>Approved Posters</h1>
       <PosterInfoList getRecentPosters={getApprovedPosters} reject={rejectPoster} />
       <h1>Generated Posters</h1>
-      <PosterInfoList getRecentPosters={getRecentPosters} approve={approvePoster}/>
+      <PosterInfoList getRecentPosters={getRecentPosters} approve={approvePoster} reject={superRejectPoster}/>
     </div>
   );
 };
