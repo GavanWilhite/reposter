@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { kv } from "@vercel/kv";
 import { PosterInfoList } from "./poster-info-list";
 
-const RECENT_COUNT = 5;
+const RECENT_COUNT = 25;
 
 const Page = () => {
   async function getRecentPosters() {
