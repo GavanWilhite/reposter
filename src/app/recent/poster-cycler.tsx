@@ -6,8 +6,8 @@ interface PosterCyclerProps {
   getRecentPosters: () => Promise<string[]>;
 }
 
-const CYCLE_INTERVAL = 10000;
-const FETCH_INTERVAL = 10000;
+const CYCLE_INTERVAL = 10;
+const FETCH_INTERVAL = 10;
 
 export const PosterCycler = (props: PosterCyclerProps) => {
   const [posters, setPosters] = useState<string[]>([]);
