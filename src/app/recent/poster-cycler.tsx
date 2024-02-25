@@ -8,6 +8,7 @@ interface PosterCyclerProps {
 
 const CYCLE_INTERVAL = 10;
 const FETCH_INTERVAL = 10;
+const CACHE_BUSTER = 1;
 
 export const PosterCycler = (props: PosterCyclerProps) => {
   const [posters, setPosters] = useState<string[]>([]);
@@ -63,7 +64,7 @@ export const PosterCycler = (props: PosterCyclerProps) => {
       {posters.map((poster, index) => (
         <img
           key={index}
-          src={`/api/generate-poster?${poster}`}
+          src={`/api/generate-poster?${poster}&cb=${CACHE_BUSTER}`}
           alt={`Poster ${index}`}
           style={{
             maxWidth: "100%",

@@ -54,7 +54,11 @@ export async function GET(req: NextRequest) {
         );
 
         const generateQuery = new URLSearchParams(searchParams);
-        const generateUrl = getHostPrefixedUrl(`/generate?${generateQuery}`);
+        const qrQuery = new URLSearchParams();
+        qrQuery.append('template', templateName);
+        if(generateQuery.has('from')) qrQuery.append('from', generateQuery.get('from')!);
+
+        const generateUrl = getHostPrefixedUrl(`/generate?${qrQuery}`);
 
         const qrSvg = await QRCode.toString(generateUrl, {
             margin: 2,

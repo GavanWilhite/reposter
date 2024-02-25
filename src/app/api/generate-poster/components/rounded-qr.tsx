@@ -33,8 +33,8 @@ export default function RoundedQRCode(props: QRProps) {
         }}>
             <img
                 style={{
-                    width: '65%',
-                    height: '65%',
+                    width: '70%',
+                    height: '70%',
                     margin: 'auto',
                 }}
                 src={data}
